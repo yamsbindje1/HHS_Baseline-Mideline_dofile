@@ -9,7 +9,7 @@
 * Analysis of baseline and midline Household Survey 2020 - DRC
 
 ** Open dataset Post-RAS(Enter your own file path)
-use "C:\Users\JUNIOR KASONGA\Desktop\Etude_comparative_HHS\HHS_2\Merge_2\Nouveau_merge2\HHS_FORM_v6_DRC-2.dta",clear
+use "C:\Users\Yams\Desktop\Etude_comparative_HHS\HHS_2\Merge_2\Nouveau_merge2\HHS_FORM_v6_DRC-2.dta",clear
 rename setofg4hh_childcg_availablenet_r setofnet_repeat
 rename setofg4hhroster setofhhroster
 
@@ -22,11 +22,11 @@ save `hhfile'
 restore
 ** merge with HH Net usage (net_repeat)
 replace setofnet_repeat = string(_n,"%5.0f") if setofnet_repeat == ""
-merge 1:m setofnet_repeat using "C:\Users\JUNIOR KASONGA\Desktop\Etude_comparative_HHS\HHS_2\Merge_2\Nouveau_merge2\HHS_FORM_v6_DRC-net_repeat.dta" 
+merge 1:m setofnet_repeat using "C:\Users\Yams\Desktop\Etude_comparative_HHS\HHS_2\Merge_2\Nouveau_merge2\HHS_FORM_v6_DRC-net_repeat.dta" 
 keep setofhhroster sleep_undernet hhm_sleep_undernet
 rename *, lower
 ** merge with HH Member List (hhroster) and tempfile
-merge m:m setofhhroster using "C:\Users\JUNIOR KASONGA\Desktop\Etude_comparative_HHS\HHS_2\Merge_2\Nouveau_merge2\HHS_FORM_v6_DRC-hhroster.dta"
+merge m:m setofhhroster using "C:\Users\Yams\Desktop\Etude_comparative_HHS\HHS_2\Merge_2\Nouveau_merge2\HHS_FORM_v6_DRC-hhroster.dta"
 drop if _merge==1	
 drop _merge						
 merge m:1 setofhhroster using `hhfile'
@@ -38,7 +38,7 @@ save `hhs_v6_postras'
 *end PostRAS
 
 ** Open dataset Baseline(Enter your own file path)
-use "C:\Users\JUNIOR KASONGA\Desktop\Etude_comparative_HHS\HHS_1\Merge_1\HHS_FORM_v5_DRC_clean.dta", clear
+use "C:\Users\Yams\Desktop\Etude_comparative_HHS\HHS_1\Merge_1\HHS_FORM_v5_DRC_clean.dta", clear
 rename SET_OF_g4_hh_child_net_repeat SETOFnet_repeat
 rename SET_OF_g4_hhroster SETOFhhroster
 
@@ -52,7 +52,7 @@ restore
 
 ** merge with HH Net usage (net_repeat)
 replace SETOFnet_repeat = string(_n,"%5.0f") if SETOFnet_repeat == ""
-merge 1:m SETOFnet_repeat using "C:\Users\JUNIOR KASONGA\Desktop\Etude_comparative_HHS\HHS_1\Merge_1\HHS_FORM_v5_DRC-g4-hh_child-net_repeat.dta"
+merge 1:m SETOFnet_repeat using "C:\Users\Yams\Desktop\Etude_comparative_HHS\HHS_1\Merge_1\HHS_FORM_v5_DRC-g4-hh_child-net_repeat.dta"
 gen id = _n 								// Unique identifier of net
 
 keep SETOFhhroster sleep_undernet hhm_sleep_undernet* id
@@ -69,7 +69,7 @@ collapse (sum) id, by(SETOFhhroster hhm_sleep_undernet)
 gen hh_sno = hhm_sleep_undernet
 
 ** merge with HH Member List (hhroster) and tempfile
-merge m:1 hh_sno SETOFhhroster using "C:\Users\JUNIOR KASONGA\Desktop\Etude_comparative_HHS\HHS_1\Merge_1\HHS_FORM_v5_DRC-g4-hhroster_clean2.dta"
+merge m:1 hh_sno SETOFhhroster using "C:\Users\Yams\Desktop\Etude_comparative_HHS\HHS_1\Merge_1\HHS_FORM_v5_DRC-g4-hhroster_clean2.dta"
 drop if _merge==1	
 drop _merge						
 merge m:1 SETOFhhroster using `hhfile1'
