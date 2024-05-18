@@ -13,7 +13,7 @@
 
 *begin Post-RAS
 ** Open dataset (Enter your own file path)
-use "C:\Users\JUNIOR KASONGA\Desktop\Etude_comparative_HHS\HHS_2\Merge_2\Nouveau_merge2\HHS_FORM_v6_DRC-2.dta",clear
+use "C:\Users\Yams\Desktop\Etude_comparative_HHS\HHS_2\Merge_2\Nouveau_merge2\HHS_FORM_v6_DRC-2.dta",clear
 rename *, lower 
 **-------------------------------------------------------------------------------*
 drop if setofg4hhroster == ""
@@ -21,7 +21,7 @@ rename setofg4hhroster setofhhroster
 ** merge with HH Member List (hhroster dataset)
 preserve
 * Open dataset (Enter your own file path)
-use "C:\Users\JUNIOR KASONGA\Desktop\Etude_comparative_HHS\HHS_2\Merge_2\Nouveau_merge2\HHS_FORM_v6_DRC-hhroster.dta",clear
+use "C:\Users\Yams\Desktop\Etude_comparative_HHS\HHS_2\Merge_2\Nouveau_merge2\HHS_FORM_v6_DRC-hhroster.dta",clear
 rename *, lower 
 drop if hh_education == .				// keep only entries of HH head
 duplicates tag setofhhroster , gen(dup)
@@ -52,7 +52,7 @@ rename SET_OF_g4_hhroster SETOFhhroster
 ** merge with HH Member List (hhroster dataset)
 preserve
 * Open dataset (Enter your own file path)
-use "C:\Users\JUNIOR KASONGA\Desktop\Etude_comparative_HHS\HHS_1\Merge_1\HHS_FORM_v5_DRC-g4-hhroster_clean2.dta",clear
+use "C:\Users\Yams\Desktop\Etude_comparative_HHS\HHS_1\Merge_1\HHS_FORM_v5_DRC-g4-hhroster_clean2.dta",clear
 drop if hh_education == .					// keep only entries of HH head
 duplicates tag SETOFhhroster, gen(dup)
 drop if dup == 1 & hh_sno == 2
